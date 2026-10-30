@@ -9,3 +9,7 @@ __pycache__/
 *.py[cod]
 *.log
 *.tmp
+
+# casos pessoais do /advogado: nunca versionar (repositório público)
+casos/
+defesas/
