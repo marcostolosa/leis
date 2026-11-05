@@ -215,5 +215,9 @@ def main(args):
 
 
 if __name__ == "__main__":
-    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    if hasattr(signal, "SIGPIPE"):  # não existe no Windows
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    for s in (sys.stdout, sys.stderr):  # acentos no console do Windows (cp1252)
+        if hasattr(s, "reconfigure"):
+            s.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main(sys.argv[1:]))
